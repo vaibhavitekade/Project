@@ -1,0 +1,21 @@
+<div class="card p-5 mx-auto" style="width: 50%;">
+<h2 class="card-title mx-auto">Department List</h2>
+<button class="btn btn-primary my-3" [routerLink]="['add']">Add Department</button>
+<table class="table table-striped mt-5">
+    <thead>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Actions</th>
+    </thead>
+    <tbody class="table-group-divider">
+        <tr *ngFor="let d of deptList">
+            <td>{{d.id}}</td>
+            <td>{{d.name}}</td>
+            <td>
+                <button [routerLink]="['update', d.id]" class="btn btn-warning m-2">Update</button>
+                <button (click)="delete(d.id)" class="btn btn-danger m-2">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>

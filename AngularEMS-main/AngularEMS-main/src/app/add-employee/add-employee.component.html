@@ -1,0 +1,78 @@
+<div class="card p-5 mx-auto" style="width: 50%;">
+<h2 class="card-title mx-auto">Add Employee</h2>
+<form [formGroup]="empForm" (ngSubmit)="onSubmit()">
+    <!-- Name -->
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" formControlName="name">
+    </div>
+    <div *ngIf="empForm.get('name')?.invalid && (empForm.get('name')?.dirty || empForm.get('name')?.touched)"
+        class="alert alert-danger">
+        <div *ngIf="empForm.get('name')?.errors?.['required']"></div>
+            Name is required.
+    </div>
+    <!-- Date Of Birth -->
+    <div class="form-group">
+        <label for="dateOfBirth">Date of Birth</label>
+        <input type="date" class="form-control" formControlName="dateOfBirth">
+    </div>
+    <div *ngIf="empForm.get('dateOfBirth')?.invalid && (empForm.get('dateOfBirth')?.dirty || empForm.get('dateOfBirth')?.touched)"
+        class="alert alert-danger">
+        <div *ngIf="empForm.get('dateOfBirth')?.errors?.['required']"></div>
+            Date of birth is required.
+    </div>
+    <!-- Gender -->
+    <div class="form-group">
+        <label for="gender">Gender</label>
+        <div *ngFor="let g of gender | keyvalue">
+            <div *ngIf="isNumber(g.value)">
+                <input type="radio" [value]='g.value' formControlName="gender"> {{g.key}}
+            </div>
+        </div>
+    </div>
+    <div *ngIf="empForm.get('gender')?.invalid && (empForm.get('gender')?.dirty || empForm.get('gender')?.touched)"
+        class="alert alert-danger">
+        <div *ngIf="empForm.get('gender')?.errors?.['required']"></div>
+            Gender is required.
+    </div>
+    <!-- Email -->
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" formControlName="email">
+    </div>
+    <div *ngIf="empForm.get('email')?.invalid && (empForm.get('email')?.dirty || empForm.get('email')?.touched)"
+        class="alert alert-danger">
+        <div *ngIf="empForm.get('email')?.errors?.['required']"></div>
+            Email is required.
+    </div>
+    <!-- Mobile No -->
+    <div class="form-group">
+        <label for="mobileNo">Mobile No</label>
+        <input type="number" class="form-control" formControlName="mobileNo">
+    </div>
+    <div *ngIf="empForm.get('mobileNo')?.invalid && (empForm.get('mobileNo')?.dirty || empForm.get('mobileNo')?.touched)"
+        class="alert alert-danger">
+        <div *ngIf="empForm.get('mobileNo')?.errors?.['required']"></div>
+            Mobile number is required.
+    </div>
+    <!-- Department -->
+    <div class="form-group">
+        <label for="department">Department</label>
+        <select class="form-control" formControlName="departmentId">
+            <option *ngFor="let d of deptList" value="{{d.id}}">{{d.name}}</option>
+        </select>
+    </div>
+    <div *ngIf="empForm.get('department')?.invalid && (empForm.get('department')?.dirty || empForm.get('department')?.touched)"
+        class="alert alert-danger">
+        <div *ngIf="empForm.get('department')?.errors?.['required']"></div>
+            Department name is required.
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-success m-3"
+        [disabled]="!empForm.valid">Add</button>
+        <button class="btn btn-outline-info m-3" [routerLink]="['/employees']">Employees</button>
+    </div>
+
+</form>
+</div>

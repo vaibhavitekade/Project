@@ -1,0 +1,29 @@
+<div class="card p-5 mx-auto" style="width: 50%;">
+<h2 class="card-title mx-auto">Update Department</h2>
+<form [formGroup]="deptForm" (ngSubmit)="onSubmit()">
+    <!-- Department Id -->
+    <div class="form-group">
+        <label for="id">Id</label>
+        <input type="number" class="form-control"
+            formControlName="id" readonly>
+    </div>
+
+    <!-- Name -->
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control"
+            formControlName="name">
+    </div>
+    <div *ngIf="deptForm.get('name')?.invalid && (deptForm.get('name')?.dirty || deptForm.get('name')?.touched)"
+        class="alert alert-danger">
+        <div *ngIf="deptForm.get('name')?.errors?.['required']"></div>
+            Name is required.
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-success m-3"
+        [disabled]="!deptForm.valid">Update</button>
+        <button class="btn btn-outline-info m-3" [routerLink]="['/departments']">Departments</button>
+    </div>
+</form>
+</div>

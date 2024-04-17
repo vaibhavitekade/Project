@@ -1,0 +1,12 @@
+<div class="d-flex justify-content-around py-3 mb-5" style="background-color: rgb(232, 240, 255);">
+    <h1 style="color: darkblue;">Employee Management System</h1>
+    <div *ngIf="isLoggedIn()">
+        <button class="btn btn-primary m-3" [routerLink]="['departments']">Departments</button>
+        <button class="btn btn-primary m-3" [routerLink]="['employees']">Employees</button>
+        <button class="btn btn-outline-dark m-3" [routerLink]="['']" (click)="logout()">Logout</button>
+    </div>
+</div>
+
+
+
+<router-outlet></router-outlet>
